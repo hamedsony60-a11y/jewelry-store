@@ -1,2 +1,32 @@
-# jewelry-store
-Premium Gold &amp; Jewelry Online Store - iOS inspired design (Persian RTL)
+# زرنگار | فروشگاه طلا و جواهرات
+
+یک فروشگاه آنلاین لوکس طلا و جواهرات با طراحی الهام‌گرفته از iOS.
+
+## ویژگی‌ها
+
+- طراحی مدرن و تمیز به سبک iOS (blur header، گوشه‌های گرد، سایه‌های نرم)
+- راست‌چین کامل + فونت Vazirmatn
+- دسته‌بندی محصولات (انگشتر، گردنبند، دستبند، گوشواره)
+- فیلتر محصولات
+- سبد خرید کشویی (Drawer)
+- مودال جزئیات محصول
+- کاملاً ریسپانسیو
+- انیمیشن‌های نرم
+
+## مشاهده آنلاین
+
+بعد از فعال‌سازی GitHub Pages:
+
+**https://hamedsony60-a11y.github.io/jewelry-store/**
+
+## فعال‌سازی GitHub Pages
+
+1. برو به Settings مخزن
+2. از منوی چپ Pages را انتخاب کن
+3. Source → Deploy from a branch
+4. Branch: `main` و Folder: `/ (root)`
+5. Save
+
+---
+
+ساخته شده با HTML + CSS + JavaScript خالص

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>زرنگار | فروشگاه طلا و جواهرات</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <i class="fas fa-gem"></i>
+        <span>زرنگار</span>
+      </div>
+
+      <nav class="nav">
+        <a href="#home" class="active">خانه</a>
+        <a href="#products">محصولات</a>
+        <a href="#collections">مجموعه‌ها</a>
+        <a href="#about">درباره ما</a>
+        <a href="#contact">تماس</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="searchBtn" title="جستجو">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="icon-btn cart-btn" id="cartBtn" title="سبد خرید">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="hero-subtitle">مجموعه‌ای از زیباترین‌ها</p>
+      <h1>طلا و جواهرات<br><span>لوکس و خاص</span></h1>
+      <p class="hero-desc">طراحی‌های منحصر به فرد با طلای ۱۸ عیار و سنگ‌های اصل، برای لحظه‌های خاص زندگی شما</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn btn-primary">مشاهده محصولات</a>
+        <a href="#collections" class="btn btn-outline">مجموعه‌های ویژه</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-shine"></div>
+        <i class="fas fa-ring"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories">
+    <div class="container">
+      <div class="section-header">
+        <h2>دسته‌بندی‌ها</h2>
+        <p>انتخاب کنید و بدرخشید</p>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" data-filter="ring">
+          <div class="cat-icon"><i class="fas fa-ring"></i></div>
+          <h3>انگشتر</h3>
+          <span>۲۴ محصول</span>
+        </div>
+        <div class="cat-card" data-filter="necklace">
+          <div class="cat-icon"><i class="fas fa-gem"></i></div>
+          <h3>گردنبند</h3>
+          <span>۱۸ محصول</span>
+        </div>
+        <div class="cat-card" data-filter="bracelet">
+          <div class="cat-icon"><i class="fas fa-link"></i></div>
+          <h3>دستبند</h3>
+          <span>۱۵ محصول</span>
+        </div>
+        <div class="cat-card" data-filter="earring">
+          <div class="cat-icon"><i class="fas fa-circle"></i></div>
+          <h3>گوشواره</h3>
+          <span>۲۱ محصول</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <h2>محصولات منتخب</h2>
+        <p>جدیدترین و محبوب‌ترین‌ها</p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">همه</button>
+        <button class="filter-btn" data-filter="ring">انگشتر</button>
+        <button class="filter-btn" data-filter="necklace">گردنبند</button>
+        <button class="filter-btn" data-filter="bracelet">دستبند</button>
+        <button class="filter-btn" data-filter="earring">گوشواره</button>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <!-- Products will be injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections Banner -->
+  <section class="collections" id="collections">
+    <div class="container">
+      <div class="collection-banner">
+        <div class="collection-text">
+          <span class="badge">جدید</span>
+          <h2>مجموعه بهار ۱۴۰۵</h2>
+          <p>طراحی‌های الهام‌گرفته از طبیعت با طلای زرد و سفید و الماس‌های درخشان</p>
+          <a href="#products" class="btn btn-primary">مشاهده مجموعه</a>
+        </div>
+        <div class="collection-visual">
+          <i class="fas fa-spa"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-shield-halved"></i>
+          <h4>ضمانت اصالت</h4>
+          <p>تمام محصولات دارای فاکتور رسمی و ضمانت اصالت طلا</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-truck-fast"></i>
+          <h4>ارسال سریع</h4>
+          <p>ارسال رایگان برای خریدهای بالای ۵۰ میلیون تومان</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-arrows-rotate"></i>
+          <h4>۷ روز بازگشت</h4>
+          <p>امکان مرجوعی تا ۷ روز در صورت عدم رضایت</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-headset"></i>
+          <h4>پشتیبانی ۲۴/۷</h4>
+          <p>مشاوره تخصصی خرید در تمام ساعات شبانه‌روز</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container about-inner">
+      <div class="about-text">
+        <h2>درباره زرنگار</h2>
+        <p>زرنگار با بیش از ۱۵ سال تجربه در طراحی و فروش طلا و جواهرات لوکس، مجموعه‌ای از زیباترین آثار هنری را برای شما فراهم کرده است. ما به کیفیت، اصالت و طراحی منحصر به فرد متعهد هستیم.</p>
+        <p>هر قطعه با دقت و عشق ساخته می‌شود تا درخشش شما را کامل کند.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-num">۱۵+</span>
+          <span class="stat-label">سال تجربه</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">۱۲٬۰۰۰+</span>
+          <span class="stat-label">مشتری راضی</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">۸۵۰+</span>
+          <span class="stat-label">طرح اختصاصی</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo">
+            <i class="fas fa-gem"></i>
+            <span>زرنگار</span>
+          </div>
+          <p>درخشش شما، تخصص ماست.</p>
+        </div>
+        <div class="footer-col">
+          <h4>دسترسی سریع</h4>
+          <a href="#home">خانه</a>
+          <a href="#products">محصولات</a>
+          <a href="#collections">مجموعه‌ها</a>
+          <a href="#about">درباره ما</a>
+        </div>
+        <div class="footer-col">
+          <h4>تماس با ما</h4>
+          <p><i class="fas fa-phone"></i> ۰۲۱-۸۸۷۷۶۶۵۵</p>
+          <p><i class="fas fa-envelope"></i> info@zarnagar.ir</p>
+          <p><i class="fas fa-location-dot"></i> تهران، خیابان ولیعصر</p>
+        </div>
+        <div class="footer-col">
+          <h4>شبکه‌های اجتماعی</h4>
+          <div class="socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© ۱۴۰۵ زرنگار — تمامی حقوق محفوظ است</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>سبد خرید</h3>
+      <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="empty-cart">سبد خرید شما خالی است</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>جمع کل:</span>
+        <strong id="cartTotal">۰ تومان</strong>
+      </div>
+      <button class="btn btn-primary btn-block" id="checkoutBtn">ادامه خرید</button>
+    </div>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Product Modal -->
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-body" id="modalBody">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
