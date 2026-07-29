@@ -8,23 +8,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+<body class="page-fade">
   <header class="header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo nav-link">
         <i class="fas fa-gem"></i>
         <span>زرنگار</span>
       </a>
       <nav class="nav">
-        <a href="index.html">خانه</a>
-        <a href="products.html" class="active">محصولات</a>
-        <a href="collections.html">مجموعه‌ها</a>
-        <a href="contact.html">تماس</a>
+        <a href="index.html" class="nav-link">خانه</a>
+        <a href="products.html" class="active nav-link">محصولات</a>
+        <a href="collections.html" class="nav-link">مجموعه‌ها</a>
+        <a href="contact.html" class="nav-link">تماس</a>
       </nav>
       <div class="header-actions">
-        <a href="products.html?focus=1" class="icon-btn" title="جستجو">
-          <i class="fas fa-search"></i>
-        </a>
+        <div class="header-search" id="headerSearch">
+          <input type="text" id="headerSearchInput" placeholder="جستجو..." autocomplete="off">
+          <button type="button" class="icon-btn" id="searchToggle" title="جستجو">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
         <button class="icon-btn" id="cartBtn" title="سبد خرید">
           <i class="fas fa-shopping-bag"></i>
           <span class="cart-count" id="cartCount">0</span>
@@ -42,13 +45,6 @@
 
   <section class="products">
     <div class="container">
-      <!-- کادر جستجو با ذره‌بین -->
-      <div class="search-box" id="searchBox">
-        <i class="fas fa-search"></i>
-        <input type="text" id="searchInput" placeholder="جستجو بین محصولات (مثلاً انگشتر، الماس، گردنبند...)" autocomplete="off">
-        <button type="button" class="search-clear" id="searchClear" title="پاک کردن" style="display:none;">&times;</button>
-      </div>
-
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all">همه</button>
         <button class="filter-btn" data-filter="ring">انگشتر</button>
@@ -56,7 +52,6 @@
         <button class="filter-btn" data-filter="bracelet">دستبند</button>
         <button class="filter-btn" data-filter="earring">گوشواره</button>
       </div>
-
       <div class="product-grid" id="productGrid"></div>
       <p id="noResults" class="no-results" style="display:none;">محصولی با این جستجو پیدا نشد.</p>
     </div>
@@ -71,10 +66,10 @@
         </div>
         <div class="footer-col">
           <h4>دسترسی سریع</h4>
-          <a href="index.html">خانه</a>
-          <a href="products.html">محصولات</a>
-          <a href="collections.html">مجموعه‌ها</a>
-          <a href="contact.html">تماس</a>
+          <a href="index.html" class="nav-link">خانه</a>
+          <a href="products.html" class="nav-link">محصولات</a>
+          <a href="collections.html" class="nav-link">مجموعه‌ها</a>
+          <a href="contact.html" class="nav-link">تماس</a>
         </div>
         <div class="footer-col">
           <h4>تماس</h4>
@@ -108,13 +103,13 @@
     </div>
   </div>
   <div class="overlay" id="overlay"></div>
-
   <div class="modal" id="productModal">
     <div class="modal-content">
       <button class="modal-close" id="modalClose">&times;</button>
       <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
+  <div class="page-transition" id="pageTransition"></div>
 
   <script src="products-data.js"></script>
   <script src="script.js"></script>
@@ -122,36 +117,24 @@
     document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
       const cat = params.get('cat') || 'all';
-      const shouldFocus = params.get('focus') === '1';
+      const q = params.get('q') || '';
 
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.filter === cat);
       });
 
-      renderProducts(cat);
+      renderProducts(cat, 'productGrid', null, q);
 
-      const searchInput = document.getElementById('searchInput');
-      const searchClear = document.getElementById('searchClear');
-
-      if (shouldFocus && searchInput) {
-        searchInput.focus();
-        document.getElementById('searchBox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // اگر از هدر با جستجو آمده، کادر هدر را باز کن
+      if (q) {
+        const hs = document.getElementById('headerSearch');
+        const hi = document.getElementById('headerSearchInput');
+        if (hs && hi) {
+          hs.classList.add('open');
+          hi.value = q;
+          hi.focus();
+        }
       }
-
-      searchInput.addEventListener('input', () => {
-        const q = searchInput.value.trim();
-        searchClear.style.display = q ? 'flex' : 'none';
-        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-        renderProducts(activeFilter, 'productGrid', null, q);
-      });
-
-      searchClear.addEventListener('click', () => {
-        searchInput.value = '';
-        searchClear.style.display = 'none';
-        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-        renderProducts(activeFilter);
-        searchInput.focus();
-      });
     });
   </script>
 </body>

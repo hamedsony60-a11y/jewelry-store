@@ -8,23 +8,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+<body class="page-fade">
   <header class="header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo nav-link">
         <i class="fas fa-gem"></i>
         <span>زرنگار</span>
       </a>
       <nav class="nav">
-        <a href="index.html">خانه</a>
-        <a href="products.html">محصولات</a>
-        <a href="collections.html" class="active">مجموعه‌ها</a>
-        <a href="contact.html">تماس</a>
+        <a href="index.html" class="nav-link">خانه</a>
+        <a href="products.html" class="nav-link">محصولات</a>
+        <a href="collections.html" class="active nav-link">مجموعه‌ها</a>
+        <a href="contact.html" class="nav-link">تماس</a>
       </nav>
       <div class="header-actions">
-        <a href="products.html?focus=1" class="icon-btn" title="جستجو">
-          <i class="fas fa-search"></i>
-        </a>
+        <div class="header-search" id="headerSearch">
+          <input type="text" id="headerSearchInput" placeholder="جستجو..." autocomplete="off">
+          <button type="button" class="icon-btn" id="searchToggle" title="جستجو">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
         <button class="icon-btn" id="cartBtn" title="سبد خرید">
           <i class="fas fa-shopping-bag"></i>
           <span class="cart-count" id="cartCount">0</span>
@@ -42,21 +45,39 @@
 
   <section class="collections-page">
     <div class="container">
-      <div class="collection-banner">
-        <div class="collection-text">
+      <!-- مجموعه ۱: بهار - روشن و طلایی -->
+      <div class="collection-card collection-spring">
+        <div class="collection-card-img">
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" alt="مجموعه بهار">
+        </div>
+        <div class="collection-card-body">
           <span class="badge">جدید</span>
           <h2>مجموعه بهار ۱۴۰۵</h2>
-          <p>طراحی‌های الهام‌گرفته از طبیعت با طلای زرد و سفید</p>
-          <a href="products.html" class="btn btn-primary">مشاهده محصولات</a>
+          <p>طراحی‌های لطیف و روشن با طلای زرد و سنگ‌های رنگی. مناسب فصل تازه و هدایای خاص.</p>
+          <ul class="collection-tags">
+            <li>گردنبند مروارید</li>
+            <li>گوشواره آویز</li>
+            <li>انگشتر یاقوت</li>
+          </ul>
+          <a href="products.html?collection=spring" class="btn btn-primary nav-link">مشاهده این مجموعه</a>
         </div>
       </div>
 
-      <div class="collection-banner" style="margin-top:24px; background: linear-gradient(135deg, #3d2b1f, #5c4033);">
-        <div class="collection-text">
-          <span class="badge">ویژه</span>
-          <h2>مجموعه کلاسیک</h2>
-          <p>طرح‌های جاودان با الماس و طلای ۱۸ عیار</p>
-          <a href="products.html" class="btn btn-primary">مشاهده محصولات</a>
+      <!-- مجموعه ۲: کلاسیک - تیره و لوکس -->
+      <div class="collection-card collection-classic">
+        <div class="collection-card-img">
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80" alt="مجموعه کلاسیک">
+        </div>
+        <div class="collection-card-body">
+          <span class="badge badge-dark">لوکس</span>
+          <h2>مجموعه کلاسیک الماس</h2>
+          <p>طرح‌های جاودان با الماس برلیان و طلای سفید/زرد. برای مجالس رسمی و سرمایه‌گذاری.</p>
+          <ul class="collection-tags">
+            <li>انگشتر الماس</li>
+            <li>دستبند تنیس</li>
+            <li>گوشواره میخی الماس</li>
+          </ul>
+          <a href="products.html?collection=classic" class="btn btn-primary nav-link">مشاهده این مجموعه</a>
         </div>
       </div>
     </div>
@@ -71,10 +92,10 @@
         </div>
         <div class="footer-col">
           <h4>دسترسی سریع</h4>
-          <a href="index.html">خانه</a>
-          <a href="products.html">محصولات</a>
-          <a href="collections.html">مجموعه‌ها</a>
-          <a href="contact.html">تماس</a>
+          <a href="index.html" class="nav-link">خانه</a>
+          <a href="products.html" class="nav-link">محصولات</a>
+          <a href="collections.html" class="nav-link">مجموعه‌ها</a>
+          <a href="contact.html" class="nav-link">تماس</a>
         </div>
         <div class="footer-col">
           <h4>تماس</h4>
@@ -108,6 +129,7 @@
     </div>
   </div>
   <div class="overlay" id="overlay"></div>
+  <div class="page-transition" id="pageTransition"></div>
 
   <script src="products-data.js"></script>
   <script src="script.js"></script>

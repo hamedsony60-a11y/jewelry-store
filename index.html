@@ -8,23 +8,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+<body class="page-fade">
   <header class="header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo nav-link">
         <i class="fas fa-gem"></i>
         <span>زرنگار</span>
       </a>
       <nav class="nav">
-        <a href="index.html" class="active">خانه</a>
-        <a href="products.html">محصولات</a>
-        <a href="collections.html">مجموعه‌ها</a>
-        <a href="contact.html">تماس</a>
+        <a href="index.html" class="active nav-link">خانه</a>
+        <a href="products.html" class="nav-link">محصولات</a>
+        <a href="collections.html" class="nav-link">مجموعه‌ها</a>
+        <a href="contact.html" class="nav-link">تماس</a>
       </nav>
       <div class="header-actions">
-        <a href="products.html?focus=1" class="icon-btn" title="جستجو">
-          <i class="fas fa-search"></i>
-        </a>
+        <div class="header-search" id="headerSearch">
+          <input type="text" id="headerSearchInput" placeholder="جستجو..." autocomplete="off">
+          <button type="button" class="icon-btn" id="searchToggle" title="جستجو">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
         <button class="icon-btn" id="cartBtn" title="سبد خرید">
           <i class="fas fa-shopping-bag"></i>
           <span class="cart-count" id="cartCount">0</span>
@@ -39,8 +42,8 @@
       <h1>طلا و جواهرات<br><span>لوکس و خاص</span></h1>
       <p class="hero-desc">طراحی‌های منحصر به فرد با طلای ۱۸ عیار و سنگ‌های اصل</p>
       <div class="hero-btns">
-        <a href="products.html" class="btn btn-primary">مشاهده محصولات</a>
-        <a href="collections.html" class="btn btn-outline">مجموعه‌های ویژه</a>
+        <a href="products.html" class="btn btn-primary nav-link">مشاهده محصولات</a>
+        <a href="collections.html" class="btn btn-outline nav-link">مجموعه‌های ویژه</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -57,19 +60,19 @@
         <p>انتخاب کنید و بدرخشید</p>
       </div>
       <div class="cat-grid">
-        <a href="products.html?cat=ring" class="cat-card">
+        <a href="products.html?cat=ring" class="cat-card nav-link">
           <div class="cat-icon"><i class="fas fa-ring"></i></div>
           <h3>انگشتر</h3>
         </a>
-        <a href="products.html?cat=necklace" class="cat-card">
+        <a href="products.html?cat=necklace" class="cat-card nav-link">
           <div class="cat-icon"><i class="fas fa-gem"></i></div>
           <h3>گردنبند</h3>
         </a>
-        <a href="products.html?cat=bracelet" class="cat-card">
+        <a href="products.html?cat=bracelet" class="cat-card nav-link">
           <div class="cat-icon"><i class="fas fa-link"></i></div>
           <h3>دستبند</h3>
         </a>
-        <a href="products.html?cat=earring" class="cat-card">
+        <a href="products.html?cat=earring" class="cat-card nav-link">
           <div class="cat-icon"><i class="fas fa-circle"></i></div>
           <h3>گوشواره</h3>
         </a>
@@ -85,7 +88,7 @@
       </div>
       <div class="product-grid" id="featuredGrid"></div>
       <div style="text-align:center;margin-top:40px;">
-        <a href="products.html" class="btn btn-primary">مشاهده همه محصولات</a>
+        <a href="products.html" class="btn btn-primary nav-link">مشاهده همه محصولات</a>
       </div>
     </div>
   </section>
@@ -99,10 +102,10 @@
         </div>
         <div class="footer-col">
           <h4>دسترسی سریع</h4>
-          <a href="index.html">خانه</a>
-          <a href="products.html">محصولات</a>
-          <a href="collections.html">مجموعه‌ها</a>
-          <a href="contact.html">تماس</a>
+          <a href="index.html" class="nav-link">خانه</a>
+          <a href="products.html" class="nav-link">محصولات</a>
+          <a href="collections.html" class="nav-link">مجموعه‌ها</a>
+          <a href="contact.html" class="nav-link">تماس</a>
         </div>
         <div class="footer-col">
           <h4>تماس</h4>
@@ -136,13 +139,13 @@
     </div>
   </div>
   <div class="overlay" id="overlay"></div>
-
   <div class="modal" id="productModal">
     <div class="modal-content">
       <button class="modal-close" id="modalClose">&times;</button>
       <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
+  <div class="page-transition" id="pageTransition"></div>
 
   <script src="products-data.js"></script>
   <script src="script.js"></script>
