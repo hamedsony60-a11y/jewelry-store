@@ -69,10 +69,9 @@ function renderProducts(filter = 'all', gridId = 'productGrid', limit = null, se
 }
 
 function bounceCartSummary() {
-  const footer = document.getElementById('cartFooter');
+  const footer = document.getElementById('cartFooter') || document.querySelector('.cart-footer');
   if (!footer) return;
   footer.classList.remove('cart-bounce');
-  // reflow برای ری‌استارت انیمیشن
   void footer.offsetWidth;
   footer.classList.add('cart-bounce');
 }
