@@ -11,16 +11,31 @@
 <body class="page-fade">
   <header class="header">
     <div class="container header-inner">
-      <a href="index.html" class="logo nav-link">
-        <i class="fas fa-gem"></i>
-        <span>زرنگار</span>
-      </a>
-      <nav class="nav">
-        <a href="index.html" class="nav-link">خانه</a>
-        <a href="products.html" class="nav-link">محصولات</a>
-        <a href="collections.html" class="nav-link">مجموعه‌ها</a>
-        <a href="contact.html" class="active nav-link">تماس</a>
-      </nav>
+      <div class="header-right">
+        <a href="index.html" class="logo nav-link">
+          <span class="logo-mark">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="48" y2="48">
+                  <stop offset="0%" stop-color="#f0d78c"/>
+                  <stop offset="50%" stop-color="#d4af37"/>
+                  <stop offset="100%" stop-color="#b8960c"/>
+                </linearGradient>
+              </defs>
+              <path d="M24 4 L42 16 L42 32 L24 44 L6 32 L6 16 Z" fill="url(#g1)" opacity="0.95"/>
+              <path d="M24 10 L36 18 L36 30 L24 38 L12 30 L12 18 Z" fill="#fff" opacity="0.25"/>
+              <circle cx="24" cy="24" r="5" fill="#fff" opacity="0.9"/>
+            </svg>
+          </span>
+          <span class="logo-text">زرنگار</span>
+        </a>
+        <nav class="nav">
+          <a href="index.html" class="nav-link">خانه</a>
+          <a href="products.html" class="nav-link">محصولات</a>
+          <a href="collections.html" class="nav-link">مجموعه‌ها</a>
+          <a href="contact.html" class="active nav-link">تماس</a>
+        </nav>
+      </div>
       <div class="header-actions">
         <div class="header-search" id="headerSearch">
           <input type="text" id="headerSearchInput" placeholder="جستجو..." autocomplete="off">
@@ -49,24 +64,15 @@
         <div class="contact-info">
           <div class="contact-item">
             <i class="fas fa-phone"></i>
-            <div>
-              <h4>تلفن</h4>
-              <p>۰۲۱-۸۸۷۷۶۶۵۵</p>
-            </div>
+            <div><h4>تلفن</h4><p>۰۲۱-۸۸۷۷۶۶۵۵</p></div>
           </div>
           <div class="contact-item">
             <i class="fas fa-envelope"></i>
-            <div>
-              <h4>ایمیل</h4>
-              <p>info@zarnagar.ir</p>
-            </div>
+            <div><h4>ایمیل</h4><p>info@zarnagar.ir</p></div>
           </div>
           <div class="contact-item">
             <i class="fas fa-location-dot"></i>
-            <div>
-              <h4>آدرس</h4>
-              <p>تهران، خیابان ولیعصر</p>
-            </div>
+            <div><h4>آدرس</h4><p>تهران، خیابان ولیعصر</p></div>
           </div>
         </div>
         <form class="contact-form" onsubmit="event.preventDefault(); alert('پیام شما ارسال شد (دمو)');">
@@ -83,7 +89,12 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <div class="logo"><i class="fas fa-gem"></i><span>زرنگار</span></div>
+          <a href="index.html" class="logo nav-link" style="color:#fff">
+            <span class="logo-mark logo-mark-sm">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M24 4 L42 16 L42 32 L24 44 L6 32 L6 16 Z" fill="#d4af37"/><circle cx="24" cy="24" r="5" fill="#fff" opacity="0.9"/></svg>
+            </span>
+            <span class="logo-text">زرنگار</span>
+          </a>
           <p>درخشش شما، تخصص ماست.</p>
         </div>
         <div class="footer-col">
@@ -107,17 +118,12 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© ۱۴۰۵ زرنگار — تمامی حقوق محفوظ است</p>
-      </div>
+      <div class="footer-bottom"><p>© ۱۴۰۵ زرنگار — تمامی حقوق محفوظ است</p></div>
     </div>
   </footer>
 
   <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>سبد خرید</h3>
-      <button class="close-cart" id="closeCart">&times;</button>
-    </div>
+    <div class="cart-header"><h3>سبد خرید</h3><button class="close-cart" id="closeCart">&times;</button></div>
     <div class="cart-items" id="cartItems"><p class="empty-cart">سبد خرید شما خالی است</p></div>
     <div class="cart-footer">
       <div class="cart-total"><span>جمع کل:</span><strong id="cartTotal">۰ تومان</strong></div>
@@ -126,7 +132,6 @@
   </div>
   <div class="overlay" id="overlay"></div>
   <div class="page-transition" id="pageTransition"></div>
-
   <script src="products-data.js"></script>
   <script src="script.js"></script>
 </body>
