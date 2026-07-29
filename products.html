@@ -22,6 +22,9 @@
         <a href="contact.html">تماس</a>
       </nav>
       <div class="header-actions">
+        <a href="products.html?focus=1" class="icon-btn" title="جستجو">
+          <i class="fas fa-search"></i>
+        </a>
         <button class="icon-btn" id="cartBtn" title="سبد خرید">
           <i class="fas fa-shopping-bag"></i>
           <span class="cart-count" id="cartCount">0</span>
@@ -39,10 +42,11 @@
 
   <section class="products">
     <div class="container">
-      <!-- جستجو -->
-      <div class="search-box">
+      <!-- کادر جستجو با ذره‌بین -->
+      <div class="search-box" id="searchBox">
         <i class="fas fa-search"></i>
-        <input type="text" id="searchInput" placeholder="جستجو در محصولات..." autocomplete="off">
+        <input type="text" id="searchInput" placeholder="جستجو بین محصولات (مثلاً انگشتر، الماس، گردنبند...)" autocomplete="off">
+        <button type="button" class="search-clear" id="searchClear" title="پاک کردن" style="display:none;">&times;</button>
       </div>
 
       <div class="filter-bar">
@@ -54,7 +58,7 @@
       </div>
 
       <div class="product-grid" id="productGrid"></div>
-      <p id="noResults" class="no-results" style="display:none;">محصولی یافت نشد.</p>
+      <p id="noResults" class="no-results" style="display:none;">محصولی با این جستجو پیدا نشد.</p>
     </div>
   </section>
 
@@ -116,23 +120,37 @@
   <script src="script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // خواندن دسته از URL
       const params = new URLSearchParams(window.location.search);
       const cat = params.get('cat') || 'all';
+      const shouldFocus = params.get('focus') === '1';
 
-      // فعال کردن دکمه فیلتر مربوطه
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.filter === cat);
       });
 
       renderProducts(cat);
 
-      // جستجو
       const searchInput = document.getElementById('searchInput');
+      const searchClear = document.getElementById('searchClear');
+
+      if (shouldFocus && searchInput) {
+        searchInput.focus();
+        document.getElementById('searchBox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
       searchInput.addEventListener('input', () => {
         const q = searchInput.value.trim();
+        searchClear.style.display = q ? 'flex' : 'none';
         const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
         renderProducts(activeFilter, 'productGrid', null, q);
+      });
+
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchClear.style.display = 'none';
+        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+        renderProducts(activeFilter);
+        searchInput.focus();
       });
     });
   </script>
