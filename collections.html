@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>زرنگار | فروشگاه طلا و جواهرات</title>
+  <title>مجموعه‌ها | زرنگار</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -16,9 +16,9 @@
         <span>زرنگار</span>
       </a>
       <nav class="nav">
-        <a href="index.html" class="active">خانه</a>
+        <a href="index.html">خانه</a>
         <a href="products.html">محصولات</a>
-        <a href="collections.html">مجموعه‌ها</a>
+        <a href="collections.html" class="active">مجموعه‌ها</a>
         <a href="contact.html">تماس</a>
       </nav>
       <div class="header-actions">
@@ -30,59 +30,31 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <p class="hero-subtitle">مجموعه‌ای از زیباترین‌ها</p>
-      <h1>طلا و جواهرات<br><span>لوکس و خاص</span></h1>
-      <p class="hero-desc">طراحی‌های منحصر به فرد با طلای ۱۸ عیار و سنگ‌های اصل</p>
-      <div class="hero-btns">
-        <a href="products.html" class="btn btn-primary">مشاهده محصولات</a>
-        <a href="collections.html" class="btn btn-outline">مجموعه‌های ویژه</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-card">
-        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="جواهرات">
-      </div>
+  <section class="page-hero">
+    <div class="container">
+      <h1>مجموعه‌ها</h1>
+      <p>مجموعه‌های ویژه و محدود</p>
     </div>
   </section>
 
-  <section class="categories">
+  <section class="collections-page">
     <div class="container">
-      <div class="section-header">
-        <h2>دسته‌بندی‌ها</h2>
-        <p>انتخاب کنید و بدرخشید</p>
+      <div class="collection-banner">
+        <div class="collection-text">
+          <span class="badge">جدید</span>
+          <h2>مجموعه بهار ۱۴۰۵</h2>
+          <p>طراحی‌های الهام‌گرفته از طبیعت با طلای زرد و سفید</p>
+          <a href="products.html" class="btn btn-primary">مشاهده محصولات</a>
+        </div>
       </div>
-      <div class="cat-grid">
-        <a href="products.html?cat=ring" class="cat-card">
-          <div class="cat-icon"><i class="fas fa-ring"></i></div>
-          <h3>انگشتر</h3>
-        </a>
-        <a href="products.html?cat=necklace" class="cat-card">
-          <div class="cat-icon"><i class="fas fa-gem"></i></div>
-          <h3>گردنبند</h3>
-        </a>
-        <a href="products.html?cat=bracelet" class="cat-card">
-          <div class="cat-icon"><i class="fas fa-link"></i></div>
-          <h3>دستبند</h3>
-        </a>
-        <a href="products.html?cat=earring" class="cat-card">
-          <div class="cat-icon"><i class="fas fa-circle"></i></div>
-          <h3>گوشواره</h3>
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <section class="products">
-    <div class="container">
-      <div class="section-header">
-        <h2>محصولات منتخب</h2>
-        <p>محبوب‌ترین‌ها</p>
-      </div>
-      <div class="product-grid" id="featuredGrid"></div>
-      <div style="text-align:center;margin-top:40px;">
-        <a href="products.html" class="btn btn-primary">مشاهده همه محصولات</a>
+      <div class="collection-banner" style="margin-top:24px; background: linear-gradient(135deg, #3d2b1f, #5c4033);">
+        <div class="collection-text">
+          <span class="badge">ویژه</span>
+          <h2>مجموعه کلاسیک</h2>
+          <p>طرح‌های جاودان با الماس و طلای ۱۸ عیار</p>
+          <a href="products.html" class="btn btn-primary">مشاهده محصولات</a>
+        </div>
       </div>
     </div>
   </section>
@@ -134,20 +106,7 @@
   </div>
   <div class="overlay" id="overlay"></div>
 
-  <div class="modal" id="productModal">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <div class="modal-body" id="modalBody"></div>
-    </div>
-  </div>
-
   <script src="products-data.js"></script>
   <script src="script.js"></script>
-  <script>
-    // فقط ۴ محصول اول در صفحه اصلی
-    document.addEventListener('DOMContentLoaded', () => {
-      renderProducts('all', 'featuredGrid', 4);
-    });
-  </script>
 </body>
 </html>
