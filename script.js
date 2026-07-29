@@ -17,7 +17,6 @@ function renderProducts(filter = 'all', gridId = 'productGrid', limit = null, se
   const grid = document.getElementById(gridId);
   if (!grid) return;
 
-  // از URL هم collection را بخوان
   if (!collection) {
     const params = new URLSearchParams(window.location.search);
     collection = params.get('collection');
@@ -69,6 +68,15 @@ function renderProducts(filter = 'all', gridId = 'productGrid', limit = null, se
   });
 }
 
+function bounceCartSummary() {
+  const footer = document.getElementById('cartFooter');
+  if (!footer) return;
+  footer.classList.remove('cart-bounce');
+  // reflow برای ری‌استارت انیمیشن
+  void footer.offsetWidth;
+  footer.classList.add('cart-bounce');
+}
+
 function addToCart(id) {
   const product = products.find(p => p.id === id);
   if (!product) return;
@@ -76,16 +84,16 @@ function addToCart(id) {
   if (existing) existing.qty += 1;
   else cart.push({ ...product, qty: 1 });
   saveCart();
-  updateCartUI();
+  updateCartUI(true);
 }
 
 function removeFromCart(id) {
   cart = cart.filter(item => item.id !== id);
   saveCart();
-  updateCartUI();
+  updateCartUI(true);
 }
 
-function updateCartUI() {
+function updateCartUI(animate = false) {
   const countEl = document.getElementById('cartCount');
   const itemsEl = document.getElementById('cartItems');
   const totalEl = document.getElementById('cartTotal');
@@ -109,6 +117,8 @@ function updateCartUI() {
   }
 
   totalEl.textContent = formatPrice(cart.reduce((s, i) => s + i.price * i.qty, 0));
+
+  if (animate) bounceCartSummary();
 }
 
 function openModal(id) {
@@ -143,7 +153,6 @@ function closeCart() {
   document.getElementById('overlay')?.classList.remove('show');
 }
 
-// ===== جستجوی هدر (باز/بسته با ذره‌بین) =====
 function initHeaderSearch() {
   const wrap = document.getElementById('headerSearch');
   const toggle = document.getElementById('searchToggle');
@@ -153,25 +162,18 @@ function initHeaderSearch() {
   toggle.addEventListener('click', (e) => {
     e.stopPropagation();
     const isOpen = wrap.classList.toggle('open');
-    if (isOpen) {
-      input.focus();
-    } else {
-      input.value = '';
-    }
+    if (isOpen) input.focus();
+    else input.value = '';
   });
 
-  // جستجو با Enter → صفحه محصولات
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       const q = input.value.trim();
-      if (q) {
-        goToPage('products.html?q=' + encodeURIComponent(q));
-      }
+      if (q) goToPage('products.html?q=' + encodeURIComponent(q));
     }
   });
 
-  // اگر روی صفحه محصولات هستیم، زنده فیلتر کن
   input.addEventListener('input', () => {
     if (document.getElementById('productGrid')) {
       const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
@@ -179,15 +181,11 @@ function initHeaderSearch() {
     }
   });
 
-  // کلیک بیرون → بستن
   document.addEventListener('click', (e) => {
-    if (!wrap.contains(e.target)) {
-      wrap.classList.remove('open');
-    }
+    if (!wrap.contains(e.target)) wrap.classList.remove('open');
   });
 }
 
-// ===== انتقال نرم بین صفحات =====
 function goToPage(url) {
   const overlay = document.getElementById('pageTransition');
   if (overlay) {
@@ -207,11 +205,7 @@ function initPageTransitions() {
       goToPage(href);
     });
   });
-
-  // ورود نرم به صفحه
-  requestAnimationFrame(() => {
-    document.body.classList.add('page-ready');
-  });
+  requestAnimationFrame(() => document.body.classList.add('page-ready'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -224,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const q = document.getElementById('headerSearchInput')?.value.trim() || '';
-      // پاک کردن فیلتر collection از URL هنگام تغییر دسته
       renderProducts(btn.dataset.filter, 'productGrid', null, q, null);
     });
   });
