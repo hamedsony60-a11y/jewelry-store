@@ -13,13 +13,22 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 body {
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+body.cart-open {
+  overflow: hidden;
 }
 
 body.page-fade {
@@ -51,11 +60,13 @@ body.page-fade.page-ready {
 }
 .header-inner {
   display: flex; align-items: center; justify-content: space-between; height: 64px;
+  gap: 12px;
 }
 .header-right {
   display: flex;
   align-items: center;
   gap: 28px;
+  min-width: 0;
 }
 .logo {
   display: flex; align-items: center; gap: 10px;
@@ -94,7 +105,7 @@ body.page-fade.page-ready {
   bottom: -6px; right: 0; left: 0;
   height: 2px; background: var(--gold); border-radius: 1px;
 }
-.header-actions { display: flex; gap: 4px; align-items: center; }
+.header-actions { display: flex; gap: 4px; align-items: center; flex-shrink: 0; }
 .header-search { display: flex; align-items: center; position: relative; }
 .header-search input {
   width: 0; opacity: 0; padding: 0; border: none;
@@ -301,39 +312,51 @@ body.page-fade.page-ready {
 }
 .footer-bottom { text-align: center; padding: 24px 0; color: rgba(255,255,255,0.4); font-size: 0.85rem; }
 
-/* ===== سبد خرید ===== */
+/* سبد خرید — فقط با دکمه باز می‌شود، بیرون صفحه مخفی */
 .cart-drawer {
-  position: fixed; top: 0; left: 0; width: 380px; max-width: 100%; height: 100%;
-  background: var(--card); z-index: 200; transform: translateX(-100%);
-  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1); display: flex; flex-direction: column;
-  box-shadow: 10px 0 40px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(380px, 100vw);
+  height: 100%;
+  height: 100dvh;
+  background: var(--card);
+  z-index: 200;
+  transform: translate3d(-105%, 0, 0);
+  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 0 40px rgba(0,0,0,0.12);
+  visibility: hidden;
+  pointer-events: none;
+  touch-action: none;
+  overscroll-behavior: contain;
 }
-.cart-drawer.open { transform: translateX(0); }
+.cart-drawer.open {
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+  pointer-events: auto;
+  touch-action: auto;
+}
 
 .cart-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 24px; border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-  order: 1;
+  flex-shrink: 0; order: 1;
 }
 .close-cart { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text-secondary); }
 
-/* جمع کل و پرداخت — دقیقاً زیر عنوان سبد خرید */
 .cart-footer {
   padding: 16px 24px 18px;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(180deg, #fffef8 0%, #ffffff 100%);
-  flex-shrink: 0;
-  order: 2;
+  flex-shrink: 0; order: 2;
 }
 .cart-total {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 12px; font-size: 1.05rem;
 }
-.cart-total strong {
-  color: var(--gold-dark);
-  font-size: 1.15rem;
-}
+.cart-total strong { color: var(--gold-dark); font-size: 1.15rem; }
 
 @keyframes cartBounce {
   0%   { transform: translateY(0); }
@@ -344,13 +367,11 @@ body.page-fade.page-ready {
   86%  { transform: translateY(-3px); }
   100% { transform: translateY(0); }
 }
-.cart-footer.cart-bounce {
-  animation: cartBounce 0.7s ease;
-}
+.cart-footer.cart-bounce { animation: cartBounce 0.7s ease; }
 
 .cart-items {
-  flex: 1; overflow-y: auto; padding: 20px 24px;
-  order: 3;
+  flex: 1; overflow-y: auto; padding: 20px 24px; order: 3;
+  -webkit-overflow-scrolling: touch;
 }
 .empty-cart { text-align: center; color: var(--text-secondary); padding: 40px 0; }
 .cart-item { display: flex; gap: 14px; margin-bottom: 20px; align-items: center; }
@@ -364,6 +385,7 @@ body.page-fade.page-ready {
 .overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 150;
   opacity: 0; visibility: hidden; transition: var(--transition);
+  touch-action: none;
 }
 .overlay.show { opacity: 1; visibility: visible; }
 
@@ -402,7 +424,7 @@ body.page-fade.page-ready {
   .nav { display: none; }
   .collection-card { grid-template-columns: 1fr; }
   .collection-classic .collection-card-img { order: 0; }
-  .header-search.open input { width: 140px; }
+  .header-search.open input { width: 130px; }
   .header-right { gap: 12px; }
 }
 @media (max-width: 500px) {

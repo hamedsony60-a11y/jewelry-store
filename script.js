@@ -116,8 +116,19 @@ function updateCartUI(animate = false) {
   }
 
   totalEl.textContent = formatPrice(cart.reduce((s, i) => s + i.price * i.qty, 0));
-
   if (animate) bounceCartSummary();
+}
+
+function openCart() {
+  document.getElementById('cartDrawer')?.classList.add('open');
+  document.getElementById('overlay')?.classList.add('show');
+  document.body.classList.add('cart-open');
+}
+
+function closeCart() {
+  document.getElementById('cartDrawer')?.classList.remove('open');
+  document.getElementById('overlay')?.classList.remove('show');
+  document.body.classList.remove('cart-open');
 }
 
 function openModal(id) {
@@ -145,11 +156,6 @@ function closeModal() {
   if (!document.getElementById('cartDrawer')?.classList.contains('open')) {
     document.getElementById('overlay')?.classList.remove('show');
   }
-}
-
-function closeCart() {
-  document.getElementById('cartDrawer')?.classList.remove('open');
-  document.getElementById('overlay')?.classList.remove('show');
 }
 
 function initHeaderSearch() {
@@ -221,9 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.getElementById('cartBtn')?.addEventListener('click', () => {
-    document.getElementById('cartDrawer')?.classList.add('open');
-    document.getElementById('overlay')?.classList.add('show');
+  // سبد فقط با کلیک دکمه باز می‌شود
+  document.getElementById('cartBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openCart();
   });
 
   document.getElementById('closeCart')?.addEventListener('click', closeCart);
